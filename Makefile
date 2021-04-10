@@ -5,14 +5,15 @@ AR=$(PREFIX)ar
 OBJCOPY=$(PREFIX)objcopy
 OBJDUMP=$(PREFIX)objdump
 
-VPATH = ./uart:./led:./obj
+VPATH = ./uart:./led:./obj:./clk
 
 OBJS := start.o \
 		main.o \
 		led/led.o \
 		uart/my_printf.o \
 		uart/string_utils.o \
-		uart/uart.o
+		uart/uart.o \
+		clk/clk.o
 
 INCLUEDS = -I./include
 TARGET  = boot
@@ -37,8 +38,8 @@ $(TARGET).bin: $(OBJS)
 
 pack:
 	./tools/mkimage -n ./tools/imximage.cfg.cfgtmp -T imximage -e 0x80100000 -d $(TARGET).bin $(TARGET).imx
-	dd if=/dev/zero of=header_zero.bin bs=1024 count=1
-	cat header_zero.bin $(TARGET).imx > $(TARGET).img
+	cat tools/header_zero_1K.bin $(TARGET).imx > $(TARGET).img
 	sz $(TARGET).imx
 clean:
-	rm *.dis  *.bin *.elf *.imx *.img *.o ./led/*.o ./uart/*.o -f
+	@find -type f -name "*.o" -exec rm -f {} \;
+	@rm *.dis  *.bin *.elf *.imx *.img -f
