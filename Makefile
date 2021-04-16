@@ -5,7 +5,7 @@ AR=$(PREFIX)ar
 OBJCOPY=$(PREFIX)objcopy
 OBJDUMP=$(PREFIX)objdump
 
-VPATH = ./uart:./led:./obj:./clk
+VPATH = ./uart:./led:./obj:./clk:./mmc
 
 OBJS := start.o \
 		main.o \
@@ -13,7 +13,8 @@ OBJS := start.o \
 		uart/my_printf.o \
 		uart/string_utils.o \
 		uart/uart.o \
-		clk/clk.o
+		clk/clk.o \
+		iomux/iomux-v3.o
 
 INCLUEDS = -I./include
 TARGET  = boot

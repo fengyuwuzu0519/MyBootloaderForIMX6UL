@@ -7,6 +7,8 @@
 #ifndef __ASM_ARCH_MX6_IMX_REGS_H__
 #define __ASM_ARCH_MX6_IMX_REGS_H__
 
+#include "io.h"
+#include "config.h"
 #define ARCH_MXC
 
 #ifdef CONFIG_MX6UL
@@ -201,6 +203,7 @@
 #define SPBA_BASE_ADDR              (ATZ1_BASE_ADDR + 0x3C000)
 #define VPU_BASE_ADDR               (ATZ1_BASE_ADDR + 0x40000)
 #endif
+
 #define AIPS1_ON_BASE_ADDR          (ATZ1_BASE_ADDR + 0x7C000)
 
 #define AIPS1_OFF_BASE_ADDR         (ATZ1_BASE_ADDR + 0x80000)
@@ -400,6 +403,12 @@
 #define IOMUXC_SNVS_BASE_ADDR       (AIPS3_ARB_BASE_ADDR + 0x90000)
 #define SNVS_GPR_BASE_ADDR          (AIPS3_ARB_BASE_ADDR + 0x94000)
 #endif
+
+
+
+
+
+
 /* Only for i.MX6SX */
 #define LCDIF2_BASE_ADDR            (AIPS3_ARB_BASE_ADDR + 0x24000)
 #define MX6SX_LCDIF1_BASE_ADDR      (AIPS3_ARB_BASE_ADDR + 0x20000)
